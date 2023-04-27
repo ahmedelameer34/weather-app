@@ -1,9 +1,10 @@
-import 'package:flutter___app/weather/domain/repository/weather_repo.dart';
+
 
 import '../entities/weather.dart';
+import '../repository/weather_repo.dart';
 
 class GetWeatherByName {
-  final WeatherRepo repo;
+  final BaseWeatherRepo repo;
 
   GetWeatherByName(this.repo);
   Future<Weather> execute(String cityName)async {

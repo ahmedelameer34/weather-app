@@ -1,5 +1,7 @@
-import 'package:flutter___app/weather/domain/entities/weather.dart';
 
-abstract class WeatherRepo {
+
+import '../entities/weather.dart';
+
+abstract class BaseWeatherRepo {
  Future <Weather> getWeatherByCityName(String cityName);
 }
