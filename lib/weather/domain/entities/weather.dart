@@ -4,6 +4,11 @@ class Weather {
   final String main;
   final String description;
   final int pressure;
+  final double currentTemp;
+  final double maxTemp;
+  final double minTemp;
+  final double windSpeed;
 
-  Weather(this.id, this.cityName, this.main, this.description, this.pressure);
+  Weather(this.id, this.cityName, this.main, this.description, this.pressure,
+      this.maxTemp, this.minTemp, this.currentTemp, this.windSpeed);
 }
