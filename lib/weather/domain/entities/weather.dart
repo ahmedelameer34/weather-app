@@ -8,7 +8,17 @@ class Weather {
   final double maxTemp;
   final double minTemp;
   final double windSpeed;
+  final int humidity;
 
-  Weather(this.id, this.cityName, this.main, this.description, this.pressure,
-      this.maxTemp, this.minTemp, this.currentTemp, this.windSpeed);
+  Weather(
+      this.id,
+      this.cityName,
+      this.main,
+      this.description,
+      this.pressure,
+      this.maxTemp,
+      this.minTemp,
+      this.currentTemp,
+      this.windSpeed,
+      this.humidity);
 }

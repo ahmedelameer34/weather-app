@@ -10,7 +10,8 @@ class WeatherModel extends Weather {
       super.maxTemp,
       super.minTemp,
       super.currentTemp,
-      super.windSpeed);
+      super.windSpeed,
+      super.humidity);
 
   factory WeatherModel.fromJson(Map<String, dynamic> json) {
     return WeatherModel(
@@ -22,6 +23,7 @@ class WeatherModel extends Weather {
         json['main']["temp_max"],
         json['main']["temp_min"],
         json['main']["temp"],
-        json['wind']['speed']);
+        json['wind']['speed'],
+        json['main']['humidity']);
   }
 }
