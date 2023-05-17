@@ -20,8 +20,7 @@ class WeatherCubit extends Cubit<WeatherStates> {
 
       emit(SSearchState());
     } on Exception catch (e) {
-      print(e);
-      emit(ESearchState());
+      emit(ESearchState(e.toString()));
     }
   }
 }
