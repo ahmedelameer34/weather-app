@@ -5,13 +5,13 @@ import '../../domain/entities/weather.dart';
 
 class ResultPage extends StatelessWidget {
   Weather weather;
-  ResultPage({required this.weather});
+  ResultPage({super.key, required this.weather});
   String status = 'assets/icons/clear sky.png';
   @override
   Widget build(BuildContext context) {
     //weather description
-    var now = new DateTime.now();
-    var formatter = new DateFormat('yyyy-MM-dd');
+    var now = DateTime.now();
+    var formatter = DateFormat('yyyy-MM-dd');
     String formattedDate = formatter.format(now);
     String statusIcon() {
       switch (weather.description) {
@@ -45,7 +45,7 @@ class ResultPage extends StatelessWidget {
         height: double.infinity,
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.white, Colors.blueAccent],
+            colors: [Colors.red, Colors.blueAccent],
             begin: Alignment.bottomLeft,
             end: Alignment.topRight,
           ),
@@ -101,7 +101,7 @@ class ResultPage extends StatelessWidget {
                         height: 170,
                         decoration: BoxDecoration(
                             gradient: LinearGradient(
-                          colors: [Colors.white, Colors.blueAccent],
+                          colors: [Colors.red, Colors.blueAccent],
                           begin: Alignment.bottomLeft,
                           end: Alignment.topRight,
                         )),
@@ -113,6 +113,59 @@ class ResultPage extends StatelessWidget {
                                 'Temperature',
                                 style: TextStyle(
                                     color: Colors.yellow, fontSize: 18),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'max : ',
+                                        style: TextStyle(
+                                            color: Color.fromARGB(
+                                                255, 255, 253, 255),
+                                            fontSize: 22),
+                                      ),
+                                      Text(
+                                        '${(weather.maxTemp - 272.15).toInt().toString()}' +
+                                            ' °C',
+                                        style: TextStyle(
+                                            color: Color.fromARGB(
+                                                255, 255, 253, 255),
+                                            fontSize: 22),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'min : ',
+                                        style: TextStyle(
+                                            color: Color.fromARGB(
+                                                255, 255, 253, 255),
+                                            fontSize: 22),
+                                      ),
+                                      Text(
+                                        '${(weather.minTemp - 272.15).toInt().toString()}' +
+                                            ' °C',
+                                        style: TextStyle(
+                                            color: Color.fromARGB(
+                                                255, 255, 253, 255),
+                                            fontSize: 22),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
                             ],
                           ),
@@ -134,7 +187,7 @@ class ResultPage extends StatelessWidget {
                         height: 170,
                         decoration: BoxDecoration(
                             gradient: LinearGradient(
-                          colors: [Colors.white, Colors.blueAccent],
+                          colors: [Colors.red, Colors.blueAccent],
                           begin: Alignment.bottomLeft,
                           end: Alignment.topRight,
                         )),
@@ -143,10 +196,41 @@ class ResultPage extends StatelessWidget {
                           child: Column(
                             children: [
                               Text(
-                                'Status',
+                                weather.main,
                                 style: TextStyle(
                                     color: Colors.yellow, fontSize: 18),
-                              )
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        weather.description,
+                                        style: TextStyle(
+                                            color: Color.fromARGB(
+                                                255, 255, 253, 255),
+                                            fontSize: 22),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                      width: 40,
+                                      height: 40,
+                                      child: Image.asset(
+                                        statusIcon(),
+                                      )),
+                                ),
+                              ),
                               //(weather.currentTemp - 272.15).toInt().toString()),
                             ],
                           ),
@@ -172,7 +256,7 @@ class ResultPage extends StatelessWidget {
                         height: 170,
                         decoration: BoxDecoration(
                             gradient: LinearGradient(
-                          colors: [Colors.white, Colors.blueAccent],
+                          colors: [Colors.red, Colors.blueAccent],
                           begin: Alignment.bottomLeft,
                           end: Alignment.topRight,
                         )),
@@ -184,6 +268,48 @@ class ResultPage extends StatelessWidget {
                                 'Pressure',
                                 style: TextStyle(
                                     color: Colors.yellow, fontSize: 18),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        weather.pressure.toString() + ' mbar',
+                                        style: TextStyle(
+                                            color: Color.fromARGB(
+                                                255, 255, 253, 255),
+                                            fontSize: 22),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                'humdity',
+                                style: TextStyle(
+                                    color: Colors.yellow, fontSize: 18),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        weather.humidity.toString() + '%',
+                                        style: TextStyle(
+                                            color: Color.fromARGB(
+                                                255, 255, 253, 255),
+                                            fontSize: 22),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
                             ],
                           ),
@@ -205,7 +331,7 @@ class ResultPage extends StatelessWidget {
                         height: 170,
                         decoration: BoxDecoration(
                             gradient: LinearGradient(
-                          colors: [Colors.white, Colors.blueAccent],
+                          colors: [Colors.red, Colors.blueAccent],
                           begin: Alignment.bottomLeft,
                           end: Alignment.topRight,
                         )),
@@ -217,6 +343,37 @@ class ResultPage extends StatelessWidget {
                                 'Wind',
                                 style: TextStyle(
                                     color: Colors.yellow, fontSize: 18),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                      width: 50,
+                                      height: 50,
+                                      child: Image.asset(
+                                        'assets/icons/wind.png',
+                                      )),
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        weather.windSpeed.toString() + ' Km/h',
+                                        style: TextStyle(
+                                            color: Color.fromARGB(
+                                                255, 255, 253, 255),
+                                            fontSize: 22),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
                             ],
                           ),
