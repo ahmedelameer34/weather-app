@@ -79,8 +79,8 @@ class HomePage extends StatelessWidget {
                                 cityNa: searchController.text);
                           },
                           style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(Colors.amber),
+                            backgroundColor: MaterialStateProperty.all(
+                                Color.fromARGB(255, 127, 167, 128)),
                             padding: MaterialStateProperty.all(
                                 const EdgeInsets.symmetric(
                                     horizontal: 10, vertical: 10)),
@@ -90,7 +90,9 @@ class HomePage extends StatelessWidget {
                           ),
                           child: Text(
                             'Search',
-                            style: TextStyle(fontSize: 18, color: Colors.black),
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Color.fromARGB(255, 78, 76, 76)),
                           ),
                         ),
                       ),
