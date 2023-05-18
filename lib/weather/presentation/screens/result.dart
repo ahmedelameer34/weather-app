@@ -220,14 +220,16 @@ class ResultPage extends StatelessWidget {
                                           MainAxisAlignment.center,
                                       children: [
                                         Expanded(
-                                          child: Text(
-                                            weather.description,
-                                            overflow: TextOverflow.ellipsis,
-                                            maxLines: 1,
-                                            style: TextStyle(
-                                                color: Color.fromARGB(
-                                                    255, 255, 253, 255),
-                                                fontSize: 22),
+                                          child: Center(
+                                            child: Text(
+                                              weather.description,
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 1,
+                                              style: TextStyle(
+                                                  color: Color.fromARGB(
+                                                      255, 255, 253, 255),
+                                                  fontSize: 20),
+                                            ),
                                           ),
                                         ),
                                       ],
