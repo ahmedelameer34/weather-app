@@ -9,8 +9,10 @@ class Weather {
   final double minTemp;
   final double windSpeed;
   final int humidity;
+  final String icon;
 
   Weather(
+      this.icon,
       this.id,
       this.cityName,
       this.main,

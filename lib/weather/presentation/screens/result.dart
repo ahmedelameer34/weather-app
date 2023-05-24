@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_weather_application/core/utils/constances.dart';
 import 'package:intl/intl.dart';
 
 import '../../domain/entities/weather.dart';
@@ -6,47 +8,19 @@ import '../../domain/entities/weather.dart';
 class ResultPage extends StatelessWidget {
   Weather weather;
   ResultPage({super.key, required this.weather});
-  String status = 'assets/icons/clear sky.png';
+
   @override
   Widget build(BuildContext context) {
     //weather description
     var now = DateTime.now();
     var formatter = DateFormat('yyyy-MM-dd');
     String formattedDate = formatter.format(now);
-    String statusIcon() {
-      switch (weather.description) {
-        case 'clear sky':
-          status = 'assets/icons/clear sky.png';
-          break;
-        case 'light snow':
-          status = 'assets/icons/light snow.png';
-          break;
-        case 'broken clouds':
-          status = 'assets/icons/broken clouds.png';
-          break;
-        case 'scattered clouds':
-          status = 'assets/icons/scattered clouds.png';
-          break;
-        case 'overcast clouds':
-          status = 'assets/icons/overcast clouds.png';
-          break;
-        case 'few clouds':
-          status = 'assets/icons/scattered clouds.png';
-          break;
-        case 'light clouds':
-          status = 'assets/icons/broken clouds.png';
-          break;
-        default:
-          status = 'assets/icons/clear sky.png';
-      }
-      return status;
-    }
 
     return Scaffold(
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [Colors.red, Colors.blueAccent],
             begin: Alignment.bottomLeft,
@@ -58,43 +32,43 @@ class ResultPage extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 60,
                 ),
                 Column(
                   children: [
                     Text(
                       weather.cityName,
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Color.fromARGB(255, 213, 235, 228),
                           fontSize: 35),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
-                    Container(
-                        width: 40,
-                        height: 40,
-                        child: Image.asset(
-                          statusIcon(),
+                    SizedBox(
+                        width: 60,
+                        height: 60,
+                        child: CachedNetworkImage(
+                          imageUrl: AppContance.iconUrl(weather.icon),
                         )),
                     Text(
-                      '${(weather.currentTemp - 272.15).toInt().toString()}' +
-                          ' °C',
-                      style: TextStyle(
+                      '${(weather.currentTemp - 272.15).toInt().toString()}'
+                      ' °C',
+                      style: const TextStyle(
                           color: Color.fromARGB(255, 255, 253, 255),
                           fontSize: 22),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Text(
                       formattedDate,
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Color.fromARGB(255, 213, 235, 228),
                           fontSize: 25),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 40,
                     ),
                     Row(
@@ -102,13 +76,13 @@ class ResultPage extends StatelessWidget {
                         Expanded(
                             child: Card(
                           elevation: 10,
-                          shape: RoundedRectangleBorder(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(12)),
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(12)),
                           ),
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
                           child: Container(
                             height: 170,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 gradient: LinearGradient(
                               colors: [Colors.red, Colors.blueAccent],
                               begin: Alignment.bottomLeft,
@@ -118,12 +92,12 @@ class ResultPage extends StatelessWidget {
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
                                 children: [
-                                  Text(
+                                  const Text(
                                     'Temperature',
                                     style: TextStyle(
                                         color: Colors.yellow, fontSize: 18),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 10,
                                   ),
                                   Expanded(
@@ -133,7 +107,7 @@ class ResultPage extends StatelessWidget {
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
-                                          Text(
+                                          const Text(
                                             'max : ',
                                             style: TextStyle(
                                                 color: Color.fromARGB(
@@ -141,9 +115,9 @@ class ResultPage extends StatelessWidget {
                                                 fontSize: 22),
                                           ),
                                           Text(
-                                            '${(weather.maxTemp - 272.15).toInt().toString()}' +
-                                                ' °C',
-                                            style: TextStyle(
+                                            '${(weather.maxTemp - 272.15).toInt().toString()}'
+                                            ' °C',
+                                            style: const TextStyle(
                                                 color: Color.fromARGB(
                                                     255, 255, 253, 255),
                                                 fontSize: 22),
@@ -159,7 +133,7 @@ class ResultPage extends StatelessWidget {
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
-                                          Text(
+                                          const Text(
                                             'min : ',
                                             style: TextStyle(
                                                 color: Color.fromARGB(
@@ -167,9 +141,9 @@ class ResultPage extends StatelessWidget {
                                                 fontSize: 22),
                                           ),
                                           Text(
-                                            '${(weather.minTemp - 272.15).toInt().toString()}' +
-                                                ' °C',
-                                            style: TextStyle(
+                                            '${(weather.minTemp - 272.15).toInt().toString()}'
+                                            ' °C',
+                                            style: const TextStyle(
                                                 color: Color.fromARGB(
                                                     255, 255, 253, 255),
                                                 fontSize: 22),
@@ -182,21 +156,20 @@ class ResultPage extends StatelessWidget {
                               ),
                             ),
                           ),
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
                         )),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         Expanded(
                             child: Card(
                           elevation: 10,
-                          shape: RoundedRectangleBorder(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(12)),
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(12)),
                           ),
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
                           child: Container(
                             height: 170,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 gradient: LinearGradient(
                               colors: [Colors.red, Colors.blueAccent],
                               begin: Alignment.bottomLeft,
@@ -208,10 +181,10 @@ class ResultPage extends StatelessWidget {
                                 children: [
                                   Text(
                                     weather.main,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         color: Colors.yellow, fontSize: 18),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 10,
                                   ),
                                   Expanded(
@@ -223,12 +196,12 @@ class ResultPage extends StatelessWidget {
                                           child: Center(
                                             child: Text(
                                               weather.description,
-                                              overflow: TextOverflow.ellipsis,
+                                              overflow: TextOverflow.fade,
                                               maxLines: 1,
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   color: Color.fromARGB(
                                                       255, 255, 253, 255),
-                                                  fontSize: 20),
+                                                  fontSize: 18),
                                             ),
                                           ),
                                         ),
@@ -238,11 +211,12 @@ class ResultPage extends StatelessWidget {
                                   Expanded(
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
-                                      child: Container(
-                                          width: 40,
-                                          height: 40,
-                                          child: Image.asset(
-                                            statusIcon(),
+                                      child: SizedBox(
+                                          width: 60,
+                                          height: 60,
+                                          child: CachedNetworkImage(
+                                            imageUrl: AppContance.iconUrl(
+                                                weather.icon),
                                           )),
                                     ),
                                   ),
@@ -251,11 +225,10 @@ class ResultPage extends StatelessWidget {
                               ),
                             ),
                           ),
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
                         ))
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                     Row(
@@ -263,13 +236,13 @@ class ResultPage extends StatelessWidget {
                         Expanded(
                             child: Card(
                           elevation: 10,
-                          shape: RoundedRectangleBorder(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(12)),
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(12)),
                           ),
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
                           child: Container(
                             height: 170,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 gradient: LinearGradient(
                               colors: [Colors.red, Colors.blueAccent],
                               begin: Alignment.bottomLeft,
@@ -279,12 +252,12 @@ class ResultPage extends StatelessWidget {
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
                                 children: [
-                                  Text(
+                                  const Text(
                                     'Pressure',
                                     style: TextStyle(
                                         color: Colors.yellow, fontSize: 18),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 10,
                                   ),
                                   Expanded(
@@ -295,9 +268,8 @@ class ResultPage extends StatelessWidget {
                                             MainAxisAlignment.center,
                                         children: [
                                           Text(
-                                            weather.pressure.toString() +
-                                                ' mbar',
-                                            style: TextStyle(
+                                            '${weather.pressure} mbar',
+                                            style: const TextStyle(
                                                 color: Color.fromARGB(
                                                     255, 255, 253, 255),
                                                 fontSize: 22),
@@ -306,7 +278,7 @@ class ResultPage extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  Text(
+                                  const Text(
                                     'humdity',
                                     style: TextStyle(
                                         color: Colors.yellow, fontSize: 18),
@@ -319,8 +291,8 @@ class ResultPage extends StatelessWidget {
                                             MainAxisAlignment.center,
                                         children: [
                                           Text(
-                                            weather.humidity.toString() + '%',
-                                            style: TextStyle(
+                                            '${weather.humidity}%',
+                                            style: const TextStyle(
                                                 color: Color.fromARGB(
                                                     255, 255, 253, 255),
                                                 fontSize: 22),
@@ -333,21 +305,20 @@ class ResultPage extends StatelessWidget {
                               ),
                             ),
                           ),
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
                         )),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         Expanded(
                             child: Card(
                           elevation: 10,
-                          shape: RoundedRectangleBorder(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(12)),
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(12)),
                           ),
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
                           child: Container(
                             height: 170,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 gradient: LinearGradient(
                               colors: [Colors.red, Colors.blueAccent],
                               begin: Alignment.bottomLeft,
@@ -357,18 +328,18 @@ class ResultPage extends StatelessWidget {
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
                                 children: [
-                                  Text(
+                                  const Text(
                                     'Wind',
                                     style: TextStyle(
                                         color: Colors.yellow, fontSize: 18),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 10,
                                   ),
                                   Expanded(
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
-                                      child: Container(
+                                      child: SizedBox(
                                           width: 50,
                                           height: 50,
                                           child: Image.asset(
@@ -384,9 +355,8 @@ class ResultPage extends StatelessWidget {
                                             MainAxisAlignment.center,
                                         children: [
                                           Text(
-                                            weather.windSpeed.toString() +
-                                                ' Km/h',
-                                            style: TextStyle(
+                                            '${weather.windSpeed} Km/h',
+                                            style: const TextStyle(
                                                 color: Color.fromARGB(
                                                     255, 255, 253, 255),
                                                 fontSize: 22),
@@ -399,13 +369,12 @@ class ResultPage extends StatelessWidget {
                               ),
                             ),
                           ),
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
                         ))
                       ],
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
               ],

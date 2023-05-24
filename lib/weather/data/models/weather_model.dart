@@ -2,6 +2,7 @@ import '../../domain/entities/weather.dart';
 
 class WeatherModel extends Weather {
   WeatherModel(
+      super.icon,
       super.id,
       super.cityName,
       super.main,
@@ -15,6 +16,7 @@ class WeatherModel extends Weather {
 
   factory WeatherModel.fromJson(Map<String, dynamic> json) {
     return WeatherModel(
+        json['weather'][0]['icon'],
         json['id'],
         json['name'],
         json['weather'][0]['main'],
@@ -23,7 +25,7 @@ class WeatherModel extends Weather {
         json['main']["temp_max"],
         json['main']["temp_min"],
         json['main']["temp"],
-        json['wind']['speed'],
+        json['wind']['speed'].toDouble(),
         json['main']['humidity']);
   }
 }

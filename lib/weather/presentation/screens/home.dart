@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
           body: Container(
             width: double.infinity,
             height: double.infinity,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               gradient: LinearGradient(
                 colors: [
                   Color.fromARGB(255, 202, 245, 11),
@@ -36,17 +36,17 @@ class HomePage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
-                    Text(
+                    const Text(
                       'Know your city weather',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Color.fromARGB(255, 61, 59, 58),
                           fontSize: 25),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 60,
                     ),
                     TextFormField(
@@ -56,7 +56,7 @@ class HomePage extends StatelessWidget {
                         }
                         return null;
                       },
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           prefixIcon: Icon(Icons.search),
                           hintText: 'Enter a city name',
                           hintStyle: TextStyle(
@@ -67,11 +67,11 @@ class HomePage extends StatelessWidget {
                         await cubit.getWeather(cityNa: value);
                       },
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Center(
-                      child: Container(
+                      child: SizedBox(
                         height: 50,
                         child: ElevatedButton(
                           onPressed: () async {
@@ -80,7 +80,7 @@ class HomePage extends StatelessWidget {
                           },
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all(
-                                Color.fromARGB(255, 127, 167, 128)),
+                                const Color.fromARGB(255, 127, 167, 128)),
                             padding: MaterialStateProperty.all(
                                 const EdgeInsets.symmetric(
                                     horizontal: 10, vertical: 10)),
@@ -88,7 +88,7 @@ class HomePage extends StatelessWidget {
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(27))),
                           ),
-                          child: Text(
+                          child: const Text(
                             'Search',
                             style: TextStyle(
                                 fontSize: 18,
@@ -112,7 +112,7 @@ class HomePage extends StatelessWidget {
               MaterialPageRoute(
                   builder: (context) => ResultPage(weather: cubit.weather!)));
         } else if (state is ESearchState) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
               backgroundColor: Colors.red,
               content: Text('invalid city name , enter a correct city name')));
         }

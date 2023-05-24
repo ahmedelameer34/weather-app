@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         ),
         home: BlocProvider(
           create: (context) => WeatherCubit(),
-          child: HomePage(),
+          child: const HomePage(),
         ));
   }
 }
