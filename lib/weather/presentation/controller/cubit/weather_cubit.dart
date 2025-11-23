@@ -8,11 +8,12 @@ import 'package:flutter_weather_application/weather/presentation/controller/cubi
 
 class WeatherCubit extends Cubit<WeatherStates> {
   WeatherCubit() : super(InitialState());
+  // ignore: strict_top_level_inference
   static WeatherCubit get(context) => BlocProvider.of(context);
   Weather? weather;
 
   BaseRemoteDataSource baseRemoteDataSource = RemoteDataSource();
-  getWeather({required String cityNa}) async {
+ Future<void> getWeather({required String cityNa}) async {
     emit(LoadingState());
     try {
       BaseWeatherRepo baseWeatherRepo = WeatherRepo(baseRemoteDataSource);

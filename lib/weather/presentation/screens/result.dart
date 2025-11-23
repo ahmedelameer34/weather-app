@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 
 import '../../domain/entities/weather.dart';
 
+// ignore: must_be_immutable
 class ResultPage extends StatelessWidget {
   Weather weather;
   ResultPage({super.key, required this.weather});
@@ -21,17 +22,30 @@ class ResultPage extends StatelessWidget {
         width: double.infinity,
         height: double.infinity,
         decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Colors.red, Colors.blueAccent],
-            begin: Alignment.bottomLeft,
-            end: Alignment.topRight,
-          ),
-        ),
+            gradient: LinearGradient(
+          colors: [Colors.red, Colors.blueAccent],
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+        )),
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: SingleChildScrollView(
             child: Column(
-              children: [
+              children: [const SizedBox(
+                  height: 25,
+                ),
+                Row(
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: Icon(
+                          Icons.arrow_back,
+                          color: Colors.white,
+                        )),
+                  ],
+                ),
                 const SizedBox(
                   height: 60,
                 ),

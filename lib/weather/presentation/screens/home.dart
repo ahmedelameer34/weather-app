@@ -22,8 +22,7 @@ class HomePage extends StatelessWidget {
             decoration: const BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  Color.fromARGB(255, 202, 245, 11),
-                  Color.fromARGB(255, 146, 30, 48)
+                   Colors.blueAccent,Colors.red
                 ],
                 begin: Alignment.bottomLeft,
                 end: Alignment.topRight,
@@ -37,7 +36,7 @@ class HomePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(
-                      height: 30,
+                      height: 100,
                     ),
                     const Text(
                       'Know your city weather',
@@ -79,12 +78,12 @@ class HomePage extends StatelessWidget {
                                 cityNa: searchController.text);
                           },
                           style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(
-                                const Color.fromARGB(255, 127, 167, 128)),
-                            padding: MaterialStateProperty.all(
+                            backgroundColor: WidgetStateProperty.all(
+                                const Color.fromARGB(255, 175, 120, 201)),
+                            padding: WidgetStateProperty.all(
                                 const EdgeInsets.symmetric(
                                     horizontal: 10, vertical: 10)),
-                            shape: MaterialStateProperty.all(
+                            shape: WidgetStateProperty.all(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(27))),
                           ),
